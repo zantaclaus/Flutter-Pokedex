@@ -69,12 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
         // mainAxisSpacing: 10
       ),
       itemBuilder: (ctx, i) => GestureDetector(
-        child: buildPokemonContainer(i),
+        child: pokemonCard(i),
       ),
     );
   }
 
-  Container buildPokemonContainer(int i) {
+  Container pokemonCard(int i) {
     return Container(
       decoration: BoxDecoration(
         // border: Border.all(width: 1),
