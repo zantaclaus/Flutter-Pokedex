@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+const colors = {
+  "Grass": Color(0xff6DF1D2),
+  "Fire": Color(0xffFD8584),
+  "Water": Color(0xff76BEFE),
+  "Electric": Color(0xffFFE582),
+  "Faily": Color(0xffF79BFF),
+  "Normal": Color(0xff5E5E5E),
+  "Bug": Color(0xff16DDAE),
+  "Poison": Color(0xffD37FFB),
+  "Ground": Color(0xffF9B34B),
+  "Fighting": Color(0xff9C1B1B),
+  "Rock": Color(0xffE46E6E),
+  "Dragon": Color(0xffFF8A00),
+  "Ghost": Color(0xff8C70FF),
+  "Dark": Color(0xff252525),
+  "Psychic": Color(0xffFF6CF0),
+  "Steal": Color(0xff424141),
+  "Flying": Color(0xff3CAAFB),
+  "Ice": Color(0xff4EF1E7),
+};
+
+const backgrounds = {
+  "Grass": Color(0xff49D0B0),
+  "Fire": Color(0xffFC6C6D),
+  "Water": Color(0xff8FD0FF),
+  "Electric": Color(0xffFFD76F),
+  "Faily": Color(0xffFFC0F9),
+  "Normal": Color(0xffA3A4A5),
+  "Bug": Color(0xff47E9C2),
+  "Poison": Color(0xffE787FF),
+  "Ground": Color(0xffFFCA7A),
+  "Fighting": Color(0xffA44C4C),
+  "Rock": Color(0xffEC9393),
+  "Dragon": Color(0xffFFA439),
+  "Ghost": Color(0xffA790FF),
+  "Dark": Color(0xff424343),
+  "Psychic": Color(0xffFF94F4),
+  "Steal": Color(0xff696666),
+  "Flying": Color(0xff63BBFC),
+  "Ice": Color(0xff83FFF8),
+};
