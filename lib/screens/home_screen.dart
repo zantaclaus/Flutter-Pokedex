@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       body: ListView(
-        padding: EdgeInsets.only(top: 30),
+        padding: EdgeInsets.only(top: 20),
         children: <Widget>[
           buildGridView(),
           maxItems < data.length
@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return GridView.builder(
       itemCount: maxItems,
       shrinkWrap: true,
+      padding: EdgeInsets.all(6),
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -85,10 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Container pokemonCard(int i) {
     return Container(
       decoration: BoxDecoration(
-        // border: Border.all(width: 1),
         borderRadius: BorderRadius.circular(10),
         color: backgrounds[data[i]["Type 1"]],
-        // color: Color.fromRGBO(109, 241, 210, 100),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),
@@ -97,13 +96,16 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(top: 10, left: 10),
+      margin: EdgeInsets.all(4),
+      padding: EdgeInsets.only(top: 15, left: 10),
       child: Stack(
         children: [
           Text(
             data[i]["Name"],
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5),
           ),
           pokemonType(i, 25, "Type 1"),
           data[i]["Type 2"] != "" ? pokemonType(i, 53, "Type 2") : Container(),
