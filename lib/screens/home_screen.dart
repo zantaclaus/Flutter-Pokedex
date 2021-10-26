@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:pokedex/screens/detail_screan.dart';
 import '../pokemon_data.dart';
 import '../constant.dart';
 
@@ -69,6 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
         // mainAxisSpacing: 10
       ),
       itemBuilder: (ctx, i) => GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return DetailScreen(
+              pokemonDetails: data[i],
+            );
+          }));
+        },
         child: pokemonCard(i),
       ),
     );
