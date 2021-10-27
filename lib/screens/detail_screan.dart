@@ -80,7 +80,7 @@ class _DetailScreenState extends State<DetailScreen> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.25,
               decoration: BoxDecoration(color: Colors.black),
-              child: Expanded(
+              child: SizedBox(
                 child: Stack(
                   children: [
                     Positioned(
@@ -100,7 +100,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Center(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.amber,
+                          color: Colors.blue,
                         ),
                         child: Image.asset(
                             "assets/pokemon/${widget.pokemonDetails["Number"]}.png"),
@@ -110,7 +110,31 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
               ),
             ),
-            Container(),
+            DefaultTabController(
+              length: 3,
+              child: Column(
+                children: [
+                  TabBar(
+                    tabs: [
+                      Tab(icon: Icon(Icons.directions_car)),
+                      Tab(icon: Icon(Icons.directions_transit)),
+                      Tab(icon: Icon(Icons.directions_bike)),
+                    ],
+                  ),
+                  Container(
+                    height: 300,
+                    decoration: BoxDecoration(color: Colors.pink),
+                    child: TabBarView(
+                      children: [
+                        Icon(Icons.directions_car),
+                        Icon(Icons.directions_transit),
+                        Icon(Icons.directions_bike),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
