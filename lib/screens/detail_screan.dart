@@ -19,7 +19,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgrounds[widget.pokemonDetails["Type 1"]],
+      // backgroundColor: backgrounds[widget.pokemonDetails["Type 1"]],
       appBar: buildAppBar(),
       body: DefaultTabController(
         length: 3,
@@ -28,13 +28,14 @@ class _DetailScreenState extends State<DetailScreen> {
             Container(
               padding: EdgeInsets.all(20),
               height: MediaQuery.of(context).size.height * 0.15,
-              decoration: BoxDecoration(color: Colors.amber),
+              decoration: BoxDecoration(
+                  color: backgrounds[widget.pokemonDetails["Type 1"]]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 200,
-                    decoration: BoxDecoration(color: Colors.green),
+                    // decoration: BoxDecoration(color: Colors.green),
                     child: Column(
                       children: [
                         Align(
@@ -61,7 +62,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   Container(
                     width: 100,
-                    decoration: BoxDecoration(color: Colors.pink),
+                    // decoration: BoxDecoration(color: Colors.pink),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
@@ -79,7 +80,8 @@ class _DetailScreenState extends State<DetailScreen> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(color: Colors.black),
+              decoration: BoxDecoration(
+                  color: backgrounds[widget.pokemonDetails["Type 1"]]),
               child: SizedBox(
                 child: Stack(
                   children: [
@@ -100,8 +102,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     Center(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.blue,
-                        ),
+                            // color: Colors.blue,
+                            ),
                         child: Image.asset(
                             "assets/pokemon/${widget.pokemonDetails["Number"]}.png"),
                       ),
@@ -111,24 +113,34 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
             DefaultTabController(
-              length: 3,
+              length: 2,
               child: Column(
                 children: [
-                  TabBar(
-                    tabs: [
-                      Tab(icon: Icon(Icons.directions_car)),
-                      Tab(icon: Icon(Icons.directions_transit)),
-                      Tab(icon: Icon(Icons.directions_bike)),
-                    ],
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white),
+                    child: TabBar(
+                      tabs: [
+                        Tab(text: "About"),
+                        Tab(text: "Base Stats"),
+                      ],
+                      labelColor: Colors.black,
+                      labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                      indicatorColor: Colors.deepPurple,
+                      indicator: UnderlineTabIndicator(
+                        borderSide: BorderSide(width: 3),
+                        insets: EdgeInsets.symmetric(horizontal: 30),
+                      ),
+                    ),
                   ),
                   Container(
                     height: 300,
-                    decoration: BoxDecoration(color: Colors.pink),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
                     child: TabBarView(
                       children: [
                         Icon(Icons.directions_car),
                         Icon(Icons.directions_transit),
-                        Icon(Icons.directions_bike),
                       ],
                     ),
                   ),
