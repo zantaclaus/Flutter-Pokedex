@@ -14,8 +14,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map> data = pokemonData;
-  int maxItems = 100;
-  int addMore = 100;
+  int maxItems = 20;
+  int addMore = 20;
 
   @override
   Widget build(BuildContext context) {
