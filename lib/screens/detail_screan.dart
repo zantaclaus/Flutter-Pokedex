@@ -21,134 +21,152 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       // backgroundColor: backgrounds[widget.pokemonDetails["Type 1"]],
       appBar: buildAppBar(),
-      body: DefaultTabController(
-        length: 3,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              height: MediaQuery.of(context).size.height * 0.15,
-              decoration: BoxDecoration(
-                  color: backgrounds[widget.pokemonDetails["Type 1"]]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 200,
-                    // decoration: BoxDecoration(color: Colors.green),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            widget.pokemonDetails["Name"],
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Row(
-                            children: [
-                              pokemonType("Type 1", 0),
-                              pokemonType("Type 2", 10),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+      body: tabController(context),
+    );
+  }
+
+  DefaultTabController tabController(BuildContext context) {
+    return DefaultTabController(
+      length: 3,
+      child: Column(
+        children: [
+          detailProfile(context),
+          imageProfile(context),
+          buildTabbar()
+        ],
+      ),
+    );
+  }
+
+  Container detailProfile(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      height: MediaQuery.of(context).size.height * 0.15,
+      decoration:
+          BoxDecoration(color: backgrounds[widget.pokemonDetails["Type 1"]]),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 220,
+            // decoration: BoxDecoration(color: Colors.green),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.pokemonDetails["Name"],
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  Container(
-                    width: 100,
-                    // decoration: BoxDecoration(color: Colors.pink),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "#" + widget.pokemonDetails["Number"],
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      pokemonType("Type 1", 0),
+                      widget.pokemonDetails["Type 2"] != ""
+                          ? pokemonType("Type 2", 10)
+                          : Container(),
+                    ],
                   ),
-                ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: 100,
+            // decoration: BoxDecoration(color: Colors.pink),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                "#" + widget.pokemonDetails["Number"],
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
               ),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.25,
-              decoration: BoxDecoration(
-                  color: backgrounds[widget.pokemonDetails["Type 1"]]),
-              child: SizedBox(
-                child: Stack(
-                  children: [
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            // color: Colors.blue,
-                            ),
-                        child: Image.asset(
-                            "assets/pokemon/${widget.pokemonDetails["Number"]}.png"),
-                      ),
-                    ),
-                  ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container imageProfile(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.25,
+      decoration:
+          BoxDecoration(color: backgrounds[widget.pokemonDetails["Type 1"]]),
+      child: SizedBox(
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 30,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
                 ),
               ),
             ),
-            DefaultTabController(
-              length: 2,
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(color: Colors.white),
-                    child: TabBar(
-                      tabs: [
-                        Tab(text: "About"),
-                        Tab(text: "Base Stats"),
-                      ],
-                      labelColor: Colors.black,
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                      indicatorColor: Colors.deepPurple,
-                      indicator: UnderlineTabIndicator(
-                        borderSide: BorderSide(width: 3),
-                        insets: EdgeInsets.symmetric(horizontal: 30),
-                      ),
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                    // color: Colors.blue,
                     ),
-                  ),
-                  Container(
-                    height: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: TabBarView(
-                      children: [
-                        Icon(Icons.directions_car),
-                        Icon(Icons.directions_transit),
-                      ],
-                    ),
-                  ),
-                ],
+                child: Image.asset(
+                    "assets/pokemon/${widget.pokemonDetails["Number"]}.png"),
               ),
-            )
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  DefaultTabController buildTabbar() {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(color: Colors.white),
+            child: TabBar(
+              tabs: [
+                Tab(text: "About"),
+                Tab(text: "Base Stats"),
+              ],
+              labelColor: Colors.black,
+              labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              indicatorColor: Colors.deepPurple,
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(width: 3),
+                insets: EdgeInsets.symmetric(horizontal: 30),
+              ),
+            ),
+          ),
+          Container(
+            height: 300,
+            decoration: BoxDecoration(
+              color: Colors.white,
+            ),
+            child: TabBarView(
+              children: [
+                Icon(Icons.directions_car),
+                Icon(Icons.directions_transit),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
