@@ -11896,7 +11896,7 @@ const List<Map> pokemonData = [
   },
   {
     "Number": "718",
-    "Name": "Zygarde50% Forme",
+    "Name": "Zygarde",
     "Type 1": "Dragon",
     "Type 2": "Ground",
     "Total": "600",
