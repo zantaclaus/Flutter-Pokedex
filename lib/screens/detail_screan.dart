@@ -179,7 +179,7 @@ class _DetailScreenState extends State<DetailScreen> {
       child: Column(
         children: [
           buildTabbar(),
-          buildTabbatView(),
+          buildTabbarView(),
         ],
       ),
     );
@@ -204,7 +204,7 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Container buildTabbatView() {
+  Container buildTabbarView() {
     int total = int.parse(widget.pokemonDetails["HP"]) +
         int.parse(widget.pokemonDetails["Attack"]) +
         int.parse(widget.pokemonDetails["Defense"]) +
@@ -279,7 +279,12 @@ class _DetailScreenState extends State<DetailScreen> {
               ],
             ),
           ),
-          Icon(Icons.directions_transit),
+          Center(
+            child: Text(
+              "COMING SOON",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          )
         ],
       ),
     );
