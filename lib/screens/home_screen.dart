@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:pokedex/screens/detail_screan.dart';
@@ -13,17 +13,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map> data = pokemonData;
+  List<Map> data = pokemonData;
   int maxItems = 20;
   int addMore = 20;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
       body: ListView(
-        padding: EdgeInsets.only(top: 20),
+        padding: EdgeInsets.only(top: 40),
         children: <Widget>[
+          Container(
+            height: 80,
+            // margin: EdgeInsets.only(bottom: 10),
+            // decoration: BoxDecoration(color: Colors.green),
+            child: Stack(
+              children: [
+                buildTitle(),
+                Center(
+                    child: Opacity(
+                        opacity: 0.4,
+                        child: Image.asset("assets/pokeball.png"))),
+              ],
+            ),
+          ),
           buildGridView(),
           maxItems < data.length
               ? TextButton(
@@ -33,13 +46,72 @@ class _HomeScreenState extends State<HomeScreen> {
                         maxItems += addMore;
                         print("add more");
                         print(maxItems);
-                      } else
+                      } else {
                         maxItems = data.length;
+                      }
                     });
                   },
                   child: Text('load more'))
               : Container()
         ],
+      ),
+    );
+  }
+
+  Container buildTitle() {
+    return Container(
+      // padding: EdgeInsets.all(20),
+      // decoration: BoxDecoration(color: Colors.pink),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          "Pokedex",
+          style: TextStyle(
+            fontSize: 48,
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                blurRadius: 10.0,
+                color: Colors.grey,
+                offset: Offset(5.0, 5.0),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded buildSearchBar() {
+    return Expanded(
+      child: Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, 10),
+              blurRadius: 50,
+              color: Color(0xFF0C9869).withOpacity(0.23),
+            ),
+          ],
+        ),
+        child: TextField(
+          style: TextStyle(fontSize: 20, color: Colors.green),
+          decoration: InputDecoration(
+            hintText: "Search",
+            hintStyle: TextStyle(
+              color: Color(0xFF0C9869).withOpacity(0.5),
+            ),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            suffixIcon: Icon(Icons.search, color: Colors.black),
+          ),
+        ),
       ),
     );
   }
@@ -60,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   GridView buildGridView() {
     return GridView.builder(
+      // itemCount: data.isNotEmpty ? maxItems : 0,
       itemCount: maxItems,
       shrinkWrap: true,
       padding: EdgeInsets.all(6),
@@ -78,7 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }));
         },
-        child: pokemonCard(i),
+        child: Container(
+          child: pokemonCard(i),
+        ),
       ),
     );
   }

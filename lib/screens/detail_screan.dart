@@ -16,12 +16,44 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   // Map data = widget.pokemonDetails;
+  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: backgrounds[widget.pokemonDetails["Type 1"]],
       appBar: buildAppBar(),
       body: tabController(context),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: backgrounds[widget.pokemonDetails["Type 1"]],
+      // backgroundColor: Color(0xFFF9F8FD),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back_rounded, color: Colors.white),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return HomeScreen();
+          }));
+        },
+      ),
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 10.0, top: 2),
+          child: IconButton(
+            icon: Icon(selected ? Icons.favorite : Icons.favorite_border),
+            onPressed: () {
+              // print("Click");
+              // setState(() {
+              //   selected = !selected;
+              // });
+            },
+          ),
+        )
+      ],
     );
   }
 
@@ -34,28 +66,6 @@ class _DetailScreenState extends State<DetailScreen> {
           imageProfile(context),
           buildController()
         ],
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Color(0xFFF9F8FD),
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return HomeScreen();
-          }));
-        },
-      ),
-      title: Text(
-        "Pokedex",
-        style: TextStyle(
-            fontSize: 24,
-            color: Color(0xFF3C4046),
-            fontWeight: FontWeight.w800),
       ),
     );
   }
@@ -295,7 +305,13 @@ class _DetailScreenState extends State<DetailScreen> {
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }
@@ -305,7 +321,13 @@ class _DetailScreenState extends State<DetailScreen> {
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Align(
         alignment: Alignment.center,
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }
@@ -314,7 +336,7 @@ class _DetailScreenState extends State<DetailScreen> {
     var barColor = barType == 1 ? Colors.green : Colors.red;
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.4),
+      margin: EdgeInsets.symmetric(vertical: 11.5),
       child: Stack(
         children: [
           Container(
