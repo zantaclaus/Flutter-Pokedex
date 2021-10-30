@@ -115,7 +115,7 @@ class _DetailScreenState extends State<DetailScreen> {
             child: Align(
               alignment: Alignment.centerRight,
               child: Text(
-                "#" + widget.pokemonDetails["Number"],
+                "#" + widget.pokemonDetails["No"].toString(),
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -215,12 +215,12 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Container buildTabbarView() {
-    int total = int.parse(widget.pokemonDetails["HP"]) +
-        int.parse(widget.pokemonDetails["Attack"]) +
-        int.parse(widget.pokemonDetails["Defense"]) +
-        int.parse(widget.pokemonDetails["Sp. Atk"]) +
-        int.parse(widget.pokemonDetails["Sp. Def"]) +
-        int.parse(widget.pokemonDetails["Speed"]);
+    int total = widget.pokemonDetails["HP"] +
+        widget.pokemonDetails["Attack"] +
+        widget.pokemonDetails["Defense"] +
+        widget.pokemonDetails["Sp. Atk"] +
+        widget.pokemonDetails["Sp. Def"] +
+        widget.pokemonDetails["Speed"];
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
@@ -263,7 +263,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         statNumber(widget.pokemonDetails["Sp. Atk"]),
                         statNumber(widget.pokemonDetails["Sp. Def"]),
                         statNumber(widget.pokemonDetails["Speed"]),
-                        statNumber(total.toString()),
+                        statNumber(total),
                       ],
                     ),
                   ),
@@ -281,7 +281,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         statBar(widget.pokemonDetails["Sp. Atk"], 200, 2),
                         statBar(widget.pokemonDetails["Sp. Def"], 200, 1),
                         statBar(widget.pokemonDetails["Speed"], 200, 2),
-                        statBar(total.toString(), 1000, 1),
+                        statBar(total, 1200, 1),
                       ],
                     ),
                   ),
@@ -316,13 +316,13 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Container statNumber(String title) {
+  Container statNumber(int title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          title,
+          title.toString(),
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
@@ -332,7 +332,7 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Container statBar(String stat, int max, int barType) {
+  Container statBar(int stat, int max, int barType) {
     var barColor = barType == 1 ? Colors.green : Colors.red;
 
     return Container(
@@ -347,7 +347,7 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           FractionallySizedBox(
-            widthFactor: double.parse(stat) / max,
+            widthFactor: stat / max,
             child: Container(
               height: 5,
               decoration: BoxDecoration(

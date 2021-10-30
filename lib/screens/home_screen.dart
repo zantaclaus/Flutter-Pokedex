@@ -39,19 +39,24 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           buildGridView(),
           maxItems < data.length
-              ? TextButton(
-                  onPressed: () {
-                    setState(() {
-                      if (maxItems + addMore < data.length) {
-                        maxItems += addMore;
-                        print("add more");
-                        print(maxItems);
-                      } else {
-                        maxItems = data.length;
-                      }
-                    });
-                  },
-                  child: Text('load more'))
+              ? Container(
+                  decoration: BoxDecoration(color: Color(0xffE3E3E3)),
+                  child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          if (maxItems + addMore < data.length) {
+                            maxItems += addMore;
+                            print("add more");
+                            print(maxItems);
+                          } else {
+                            maxItems = data.length;
+                          }
+                        });
+                      },
+                      child: Text(
+                        'load more',
+                      )),
+                )
               : Container()
         ],
       ),
@@ -69,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(
             fontSize: 48,
             fontWeight: FontWeight.w900,
-            color: Colors.black,
             shadows: [
               Shadow(
                 blurRadius: 10.0,
